@@ -1,7 +1,9 @@
+from datetime import datetime
+
 from django.db import models
 
 # Create your models here.
-from parametros.models import Ciudad
+from parametros.models import Localidad, Nacionalidad
 
 
 class Grupo(models.Model):
@@ -18,12 +20,18 @@ class Persona(models.Model):
     ''' Modelo para representar las personas en la plataforma '''
     nombre = models.CharField(max_length=200)
     apellido = models.CharField(max_length=200)
-    documento = models.CharField(max_length=11, unique=True)
-    direccion = models.CharField(max_length=100)
-    ciudad = models.ForeignKey(Ciudad, models.CASCADE)
+    documento = models.CharField(max_length=8, unique=True)
+    cuit = models.CharField(max_length=11, unique=True)
+    calle = models.CharField(max_length=100)
+    numero = models.CharField(max_length=20)
+    piso_dpto = models.CharField(max_length=20)
+    cp = models.CharField(max_length=20)
+    localidad = models.ForeignKey(Localidad, models.CASCADE)
+    nacionalidad = models.ForeignKey(Nacionalidad, models.CASCADE)
     telefono = models.CharField(max_length=20)
     email = models.EmailField()
-    ingreso = models.DateField()
+    fecha_nacimiento = models.DateField(default=datetime.now)
+    ingreso = models.DateField(default=datetime.now)
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     grupo = models.ForeignKey(Grupo, models.CASCADE)
 

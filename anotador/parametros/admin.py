@@ -1,12 +1,13 @@
 from django.contrib import admin
 
 # Register your models here.
-from parametros.models import Pais, Provincia, Ciudad, Aplicacion, Sexo, Genero, TipoIntervecion
+from .models import Pais, Provincia, Ciudad, Aplicacion, Genero, TipoIntervecion, Localidad, Nacionalidad
 
 admin.site.register(Pais)
 admin.site.register(Provincia)
 admin.site.register(Ciudad)
+admin.site.register(Localidad)
+admin.site.register(Nacionalidad)
 admin.site.register(Aplicacion)
-admin.site.register(Sexo)
 admin.site.register(Genero)
 admin.site.register(TipoIntervecion)

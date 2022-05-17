@@ -1,0 +1,1 @@
+web: gunicorn anotador.wsgi --log-file -

@@ -12,6 +12,15 @@ class Pais(models.Model):
     class Meta:
         verbose_name_plural = "Paises"
 
+class Nacionalidad(models.Model):
+    ''' Modelo para representar nacionalidad '''
+    nombre = models.CharField(max_length=200, unique=True)
+
+    def __str__(self):
+        return f"{self.nombre}"
+
+    class Meta:
+        verbose_name_plural = "Nacionalidades"
 
 class Provincia(models.Model):
     ''' Modelo para representar provincias '''
@@ -36,6 +45,17 @@ class Ciudad(models.Model):
     class Meta:
         verbose_name_plural = "Ciudades"
 
+class Localidad(models.Model):
+    ''' Modelo para representar localidades de una ciudad '''
+    nombre = models.CharField(max_length=200, unique=True)
+    ciudad = models.ForeignKey(Ciudad, models.CASCADE)
+
+    def __str__(self):
+        return f"{self.nombre}, {self.ciudad}"
+
+    class Meta:
+        verbose_name_plural = "Localidades"
+
 class Aplicacion(models.Model):
     ''' Modelo para representar las aplicaciones '''
     nombre = models.CharField(max_length=200)
@@ -46,18 +66,8 @@ class Aplicacion(models.Model):
     class Meta:
         verbose_name_plural = "Aplicaciones"
 
-class Sexo(models.Model):
-    ''' Modelo para representar las aplicaciones '''
-    nombre = models.CharField(max_length=200)
-
-    def __str__(self):
-        return f"{self.nombre}"
-
-    class Meta:
-        verbose_name_plural = "Sexos"
-
 class Genero(models.Model):
-    ''' Modelo para representar las aplicaciones '''
+    ''' Modelo para representar las Generos '''
     nombre = models.CharField(max_length=200)
 
     def __str__(self):
@@ -65,6 +75,7 @@ class Genero(models.Model):
 
     class Meta:
         verbose_name_plural = "Generos"
+
 
 class TipoIntervecion(models.Model):
     ''' Modelo para representar los tipos de intervenciones segmentado por aplicación '''
@@ -76,3 +87,4 @@ class TipoIntervecion(models.Model):
 
     class Meta:
         verbose_name_plural = "Tipos de Intervenciones"
+
