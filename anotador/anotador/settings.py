@@ -10,23 +10,33 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
+import environ
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 print (BASE_DIR)
 
+# Declaraciones de variables de ambiente
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-l0vxwf8j(g9r7&oatzsj8@k(^*5cc^)zzhv0_c&uwb@7g$4t#1'
+SECRET_KEY = env('SECRET_KEY')
+DJANGO_SUPERUSER_USERNAME= env('DJANGO_SUPERUSER_USERNAME')
+DJANGO_SUPERUSER_EMAIL= env('DJANGO_SUPERUSER_EMAIL')
+DJANGO_SUPERUSER_PASSWORD= env('DJANGO_SUPERUSER_PASSWORD')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -93,17 +103,13 @@ WSGI_APPLICATION = 'anotador.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'anotador_25042022',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASS'),
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 
