@@ -88,3 +88,13 @@ class TipoIntervecion(models.Model):
     class Meta:
         verbose_name_plural = "Tipos de Intervenciones"
 
+class Institucion(models.Model):
+    ''' Modelo para representar las Instituciones relacionadas a intervenciones '''
+    nombre = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.nombre}"
+
+    class Meta:
+        verbose_name_plural = "Instituciones"
+

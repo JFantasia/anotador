@@ -4,7 +4,7 @@ from django.db import models
 
 # Create your models here.
 from persona.models import Persona
-from parametros.models import Genero, TipoIntervecion
+from parametros.models import Genero, TipoIntervecion, Institucion
 from parametros_salud.models import Cobertura, Enfermedad, Dificultad, PresionArterial, Medicamento
 from parametros_salud.models import VeNumerosLetras, IdentificaColores, TestVistaLejos, TestVistaCerca, Autopercepcion, EnfermedadCronica
 from parametros_salud.models import SituacionVivienda, MaterialVivienda, ServicioVivienda
@@ -13,7 +13,7 @@ from parametros_salud.models import SituacionVivienda, MaterialVivienda, Servici
 class Ficha(models.Model):
     ''' Modelo para representar las fichas de salud de las personas en la plataforma '''
     persona = models.ForeignKey(Persona, models.CASCADE, related_name= "sfp")
-    genero = models.ForeignKey(Genero, models.CASCADE)
+    genero = models.ForeignKey(Genero, models.CASCADE, related_name= "sfg")
     cobertura = models.ForeignKey(Cobertura, models.CASCADE, null=True, blank=True)
     enfermedades_cronicas = models.ManyToManyField(EnfermedadCronica, related_name="enf_cronicas", null=True, blank=True)
     enfermedades = models.ManyToManyField(Enfermedad, related_name="enf", null=True, blank=True)
@@ -58,6 +58,7 @@ class Intervencion(models.Model):
     ''' Modelo para representar las Intervenciones de salud de las personas en la plataforma '''
     fecha = models.DateField()
     tipo = models.ForeignKey(TipoIntervecion, models.CASCADE, related_name="sti")
+    institucion = models.ForeignKey(Institucion, models.CASCADE, related_name="stin")
     persona = models.ForeignKey(Ficha, models.CASCADE)
     detalle = models.TextField()
 

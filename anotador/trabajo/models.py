@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.db import models
-from parametros.models import TipoIntervecion
+from parametros.models import TipoIntervecion, Institucion
 from persona.models import Persona
 from parametros_trabajo.models import Actividad, UnidadProductiva, Programa, Trabajo
 # Create your models here.
@@ -38,6 +38,7 @@ class Intervencion(models.Model):
     ''' Modelo para representar las Intervenciones de salud de las personas en la plataforma '''
     fecha = models.DateField()
     tipo = models.ForeignKey(TipoIntervecion, models.CASCADE, related_name="tti")
+    institucion = models.ForeignKey(Institucion, models.CASCADE, related_name="ttin")
     persona = models.ForeignKey(Ficha, models.CASCADE)
     detalle = models.TextField()
 
