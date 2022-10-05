@@ -37,7 +37,7 @@ class Ficha(models.Model):
 class Intervencion(models.Model):
     ''' Modelo para representar las Intervenciones de salud de las personas en la plataforma '''
     fecha = models.DateField()
-    tipo = models.ForeignKey(TipoIntervecion, models.CASCADE, related_name="tti", limit_choices_to={'app': 2})
+    tipo = models.ForeignKey(TipoIntervecion, models.CASCADE, related_name="tti", limit_choices_to={'app__nombre': 'Trabajo'})
     institucion = models.ForeignKey(Institucion, models.CASCADE, related_name="ttin")
     persona = models.ForeignKey(Ficha, models.CASCADE)
     detalle = models.TextField()

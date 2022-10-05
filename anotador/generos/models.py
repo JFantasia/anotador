@@ -27,7 +27,7 @@ class Ficha(models.Model):
 class Intervencion(models.Model):
     ''' Modelo para representar las Intervenciones de géneros de las personas en la plataforma '''
     fecha = models.DateField()
-    tipo = models.ForeignKey(TipoIntervecion, models.CASCADE, related_name="gti", limit_choices_to={'app': 3})
+    tipo = models.ForeignKey(TipoIntervecion, models.CASCADE, related_name="gti", limit_choices_to={'app__nombre': 'Géneros'})
     institucion = models.ForeignKey(Institucion, models.CASCADE, related_name="gtin")
     persona = models.ForeignKey(Ficha, models.CASCADE)
     detalle = models.TextField()
