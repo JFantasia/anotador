@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from import_export.admin import ExportActionMixin
 
-from .models import Ficha, Intervencion
+from .models import Ficha, Intervencion, Nota
 
 class IntervencionesTabularInline(admin.TabularInline):
     model = Intervencion
@@ -34,3 +34,9 @@ class IntervencionAdmin(ExportActionMixin, admin.ModelAdmin):
     list_filter = ['fecha', 'tipo', 'persona__persona__documento']
 
 admin.site.register(Intervencion, IntervencionAdmin)
+
+class NotaAdmin(ExportActionMixin, admin.ModelAdmin):
+    # list_display = ['persona', 'tipo', 'persona']
+    list_filter = ['etiqueta']
+
+admin.site.register(Nota, NotaAdmin)

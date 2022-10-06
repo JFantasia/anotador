@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.db import models
-from parametros.models import TipoIntervecion, Institucion
+from parametros.models import Etiqueta, TipoIntervecion, Institucion
 from persona.models import Persona
 from parametros_trabajo.models import Actividad, UnidadProductiva, Programa, Trabajo
 # Create your models here.
@@ -62,3 +62,17 @@ class Lista_Espera(models.Model):
 
     class Meta:
         verbose_name_plural = "Lista de Espera"
+
+class Nota(models.Model):
+    ''' Modelo para representar las notas de trabajo '''
+    fecha = models.DateField()
+    etiqueta = models.ForeignKey(Etiqueta, models.CASCADE, related_name= "net", null=True, blank=True)
+    resumen = models.CharField(max_length=50)
+    detalle = models.TextField()
+
+
+    def __str__(self):
+        return f"{self.fecha} - {self.resumen}"
+
+    class Meta:
+        verbose_name_plural = "Notas"

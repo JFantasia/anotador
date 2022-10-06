@@ -98,3 +98,12 @@ class Institucion(models.Model):
     class Meta:
         verbose_name_plural = "Instituciones"
 
+class Etiqueta(models.Model):
+    ''' Modelo para representar etiquetas para notas '''
+    nombre = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.nombre}"
+
+    class Meta:
+        verbose_name_plural = "Etiquetas"

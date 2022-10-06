@@ -4,7 +4,7 @@ from django.db import models
 
 # Create your models here.
 from persona.models import Persona
-from parametros.models import Genero, Institucion, TipoIntervecion
+from parametros.models import Etiqueta, Genero, Institucion, TipoIntervecion
 
 class Ficha(models.Model):
     ''' Modelo para representar las fichas de géneros de las personas en la plataforma '''
@@ -38,4 +38,18 @@ class Intervencion(models.Model):
 
     class Meta:
         verbose_name_plural = "Intervenciones"
+
+class Nota(models.Model):
+    ''' Modelo para representar las notas de géneros '''
+    fecha = models.DateField()
+    etiqueta = models.ForeignKey(Etiqueta, models.CASCADE, related_name= "neg", null=True, blank=True)
+    resumen = models.CharField(max_length=50)
+    detalle = models.TextField()
+
+
+    def __str__(self):
+        return f"{self.fecha} - {self.resumen}"
+
+    class Meta:
+        verbose_name_plural = "Notas"
 

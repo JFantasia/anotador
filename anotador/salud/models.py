@@ -4,7 +4,7 @@ from django.db import models
 
 # Create your models here.
 from persona.models import Persona
-from parametros.models import Genero, TipoIntervecion, Institucion
+from parametros.models import Etiqueta, Genero, TipoIntervecion, Institucion
 from parametros_salud.models import Cobertura, Enfermedad, Dificultad, PresionArterial, Medicamento
 from parametros_salud.models import VeNumerosLetras, IdentificaColores, TestVistaLejos, TestVistaCerca, Autopercepcion, EnfermedadCronica
 from parametros_salud.models import SituacionVivienda, MaterialVivienda, ServicioVivienda
@@ -125,3 +125,17 @@ class Turno(models.Model):
 
     class Meta:
         verbose_name_plural = "Turnos"
+
+class Nota(models.Model):
+    ''' Modelo para representar las notas de salud '''
+    fecha = models.DateField()
+    etiqueta = models.ForeignKey(Etiqueta, models.CASCADE, related_name= "nes", null=True, blank=True)
+    resumen = models.CharField(max_length=50)
+    detalle = models.TextField()
+
+
+    def __str__(self):
+        return f"{self.fecha} - {self.resumen}"
+
+    class Meta:
+        verbose_name_plural = "Notas"

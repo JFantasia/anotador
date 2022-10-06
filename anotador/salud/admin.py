@@ -4,7 +4,7 @@ from django.contrib import admin
 from import_export.admin import ExportActionMixin
 
 from .forms import AgendaTurnosForm, TurnoForm
-from .models import Ficha, Intervencion, Atencion, Lista_Medicamentos, AgendaTurnos, Turno
+from .models import Ficha, Intervencion, Atencion, Lista_Medicamentos, AgendaTurnos, Nota, Turno
 
 
 
@@ -97,3 +97,9 @@ class AgendaTurnosAdmin(admin.ModelAdmin):
     #         return False
 
 admin.site.register(AgendaTurnos, AgendaTurnosAdmin)
+
+class NotaAdmin(ExportActionMixin, admin.ModelAdmin):
+    # list_display = ['persona', 'tipo', 'persona']
+    list_filter = ['etiqueta']
+
+admin.site.register(Nota, NotaAdmin)
