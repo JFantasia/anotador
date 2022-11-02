@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     'salud',
     'trabajo',
     'educacion',
-    'generos'
+    'generos',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

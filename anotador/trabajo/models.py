@@ -58,7 +58,7 @@ class Lista_Espera(models.Model):
 
 
     def __str__(self):
-        return f"{self.fecha} - {self.tipo}, {self.persona}"
+        return f"{self.fecha} - {self.actividad}, {self.persona}"
 
     class Meta:
         verbose_name_plural = "Lista de Espera"
