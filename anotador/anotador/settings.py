@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'trabajo',
     'educacion',
     'generos',
-    'rest_framework'
+    # 'rest_framework'
 ]
 
 MIDDLEWARE = [
