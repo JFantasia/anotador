@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Cobertura, Enfermedad, Dificultad, ElementoCuidado, ProblematicaBarrio, Medicamento
+from .models import Cobertura, Enfermedad, Dificultad, ElementoCuidado, Especialidad, ProblematicaBarrio, Medicamento
 from .models import SituacionVivienda, MaterialVivienda, ServicioVivienda
 from .models import EnfermedadCronica
 from .models import PresionArterial, IdentificaColores, VeNumerosLetras, TestVistaCerca, TestVistaLejos, Autopercepcion
@@ -25,3 +25,4 @@ admin.site.register(Medicamento)
 admin.site.register(SituacionVivienda)
 admin.site.register(MaterialVivienda)
 admin.site.register(ServicioVivienda)
+admin.site.register(Especialidad)

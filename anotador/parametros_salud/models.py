@@ -161,3 +161,13 @@ class ServicioVivienda(models.Model):
 
     class Meta:
         verbose_name_plural = "Servicios de las Viviendas"
+
+class Especialidad(models.Model):
+    ''' Modelo para representar las especialidades de profesionales de la salud '''
+    nombre = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.nombre}"
+
+    class Meta:
+        verbose_name_plural = "Especialidades"

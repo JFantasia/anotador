@@ -4,7 +4,7 @@ from django.contrib import admin
 from import_export.admin import ExportActionMixin
 
 from .forms import AgendaTurnosForm, TurnoForm
-from .models import Ficha, Intervencion, Atencion, Lista_Medicamentos, AgendaTurnos, Nota, Turno
+from .models import Ficha, Intervencion, Atencion, Lista_Medicamentos, AgendaTurnos, Nota, Profesional, Turno, Turno_Externos
 
 
 
@@ -40,11 +40,26 @@ class AtencionesTabularInline(admin.TabularInline):
     def has_delete_permission(self, request, obj=None):
         return False
 
+class TurnosExternosTabularInline(admin.TabularInline):
+    model = Turno_Externos
+    fields = ('fecha', 'profesional', 'asistio')
+    can_delete = False
+    extra = 0
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
 
 class FichaAdmin(ExportActionMixin, admin.ModelAdmin):
     # list_display = ['persona', 'tipo', 'persona']
     list_filter = ['genero', 'cobertura', 'ingreso']
-    inlines = [IntervencionesTabularInline, AtencionesTabularInline]
+    inlines = [IntervencionesTabularInline, AtencionesTabularInline, TurnosExternosTabularInline]
 
 admin.site.register(Ficha, FichaAdmin)
 admin.site.register(Lista_Medicamentos)
@@ -100,6 +115,8 @@ admin.site.register(AgendaTurnos, AgendaTurnosAdmin)
 
 class NotaAdmin(ExportActionMixin, admin.ModelAdmin):
     # list_display = ['persona', 'tipo', 'persona']
-    list_filter = ['etiqueta']
+    list_filter = ['etiqueta', 'fecha']
 
 admin.site.register(Nota, NotaAdmin)
+admin.site.register(Profesional)
+admin.site.register(Turno_Externos)
