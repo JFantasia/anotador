@@ -21,7 +21,7 @@ class Persona(models.Model):
     nombre = models.CharField(max_length=200)
     apellido = models.CharField(max_length=200)
     documento = models.CharField(max_length=8, unique=True)
-    cuit = models.CharField(max_length=11, unique=True)
+    cuit = models.CharField(max_length=11, unique=True, blank=True, null=True)
     calle = models.CharField(max_length=100)
     numero = models.CharField(max_length=20)
     piso_dpto = models.CharField(max_length=20, blank=True, null=True)
