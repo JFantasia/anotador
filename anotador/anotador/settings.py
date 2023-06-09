@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'trabajo',
     'educacion',
     'generos',
+    'censo',
     # 'rest_framework'
 ]
 

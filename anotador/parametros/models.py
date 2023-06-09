@@ -91,6 +91,9 @@ class TipoIntervecion(models.Model):
 class Institucion(models.Model):
     ''' Modelo para representar las Instituciones relacionadas a intervenciones '''
     nombre = models.CharField(max_length=200)
+    esEducativa = models.BooleanField(default=False)
+    esCentroFormacion = models.BooleanField(default=False)
+    esCuidados = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.nombre}"
