@@ -156,6 +156,16 @@ class UsoVivienda(models.Model):
     class Meta:
         verbose_name_plural = "Usos de la Vivienda"
 
+class IngresosEspeciales(models.Model):
+    ''' Modelo para representar otros ingresos de la familia '''
+    nombre = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.nombre}"
+
+    class Meta:
+        verbose_name_plural = "Ingresos Especiales"
+
 class Encuesta(models.Model):
     ''' Modelo para representar las encuestas '''
     fecha = models.DateField(default=datetime.now)
@@ -194,13 +204,22 @@ class Familia(models.Model):
 
 class Trabajo(models.Model):
     ''' Modelo para representar la situación laboral de las personas de la familias encuestadas '''
+    frecuencia = (
+        ('D', 'Diaria'),
+        ('S', 'Semanal'),
+        ('Q', 'Quincenal'),
+        ('M', 'Mensual'),
+    )
     encuesta = models.ForeignKey(Encuesta, models.CASCADE)
     familia = models.ForeignKey(Familia, models.CASCADE)
     tieneTrabajo = models.BooleanField()
     aportaJubilación = models.BooleanField()
     tipoTrabajo = models.ForeignKey(TipoTrabajo, models.CASCADE, related_name="traTipo", blank=True, null=True)
+    frecuenciaCobroTrabajo = models.CharField(max_length=1, choices=frecuencia, blank=True, null=True, default='1', verbose_name='Frecuencia de ingresos por trabajo')
     jubiladxPensionadx = models.BooleanField()
-    percibeAsignaciones = models.BooleanField()
+    percibeAsignaciones = models.BooleanField(verbose_name="Percibe Asignaciones Familiares")
+    percibeAcompaniar = models.BooleanField(verbose_name="Percibe Acompañar")
+    percibeOtros = models.ForeignKey(IngresosEspeciales, models.CASCADE, related_name="Percibe otros ingresos", blank=True, null=True)
 
     def __str__(self):
         return f"Situación laboral {self.encuesta} - {self.familia}"

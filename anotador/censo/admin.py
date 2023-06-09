@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from censo.models import EspaciosPoderosa, InfraSocial, MaterialesPared, MaterialesPiso, MaterialesTecho, OpcionesAgua, OpcionesCloacas, OpcionesGas, OpcionesLuz, Parentezco, Encuesta, Familia, TipoBanio, TipoInodoro, TipoTrabajo, TipoVivienda, Trabajo, UsoVivienda, Vivienda, Servicios
+from censo.models import EspaciosPoderosa, InfraSocial, IngresosEspeciales, MaterialesPared, MaterialesPiso, MaterialesTecho, OpcionesAgua, OpcionesCloacas, OpcionesGas, OpcionesLuz, Parentezco, Encuesta, Familia, TipoBanio, TipoInodoro, TipoTrabajo, TipoVivienda, Trabajo, UsoVivienda, Vivienda, Servicios
 
 admin.site.register(Parentezco)
 admin.site.register(Familia)
@@ -21,6 +21,8 @@ admin.site.register(MaterialesPiso)
 admin.site.register(TipoBanio)
 admin.site.register(TipoInodoro)
 admin.site.register(UsoVivienda)
+admin.site.register(IngresosEspeciales)
+
 
 
 class FamiliaInline(admin.TabularInline):
