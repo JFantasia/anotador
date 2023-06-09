@@ -219,7 +219,7 @@ class Trabajo(models.Model):
     jubiladxPensionadx = models.BooleanField()
     percibeAsignaciones = models.BooleanField(verbose_name="Percibe Asignaciones Familiares")
     percibeAcompaniar = models.BooleanField(verbose_name="Percibe Acompañar")
-    percibeOtros = models.ForeignKey(IngresosEspeciales, models.CASCADE, related_name="Percibe otros ingresos", blank=True, null=True)
+    percibeOtros = models.ForeignKey(IngresosEspeciales, models.CASCADE, verbose_name="Percibe otros ingresos", blank=True, null=True)
 
     def __str__(self):
         return f"Situación laboral {self.encuesta} - {self.familia}"
