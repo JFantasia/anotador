@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'educacion',
     'generos',
     'censo',
+    'smart_selects',
     # 'rest_framework'
 ]
 
@@ -163,4 +164,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
+USE_DJANGO_JQUERY = True
 

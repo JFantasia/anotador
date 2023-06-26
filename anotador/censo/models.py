@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 from parametros.models import Genero, Institucion, Nacionalidad
+from smart_selects.db_fields import ChainedForeignKey
 
 
 class Parentezco(models.Model):
@@ -197,7 +198,7 @@ class Familia(models.Model):
     leeEscribe = models.BooleanField()
 
     def __str__(self):
-        return f"{self.parentezco} - {self.edad}"
+        return f"{self.parentezco} - {self.edad} - {self.genero}"
 
     class Meta:
         verbose_name_plural = "2-Familiares"
@@ -211,7 +212,14 @@ class Trabajo(models.Model):
         ('M', 'Mensual'),
     )
     encuesta = models.ForeignKey(Encuesta, models.CASCADE)
-    familia = models.ForeignKey(Familia, models.CASCADE)
+    """ familia = models.ForeignKey(Familia, models.CASCADE) """
+    familia = ChainedForeignKey(
+        Familia,
+        chained_field="encuesta",
+        chained_model_field="encuesta",
+        show_all=False,
+        auto_choose=True,
+        sort=True)
     tieneTrabajo = models.BooleanField()
     aportaJubilación = models.BooleanField()
     tipoTrabajo = models.ForeignKey(TipoTrabajo, models.CASCADE, related_name="traTipo", blank=True, null=True)

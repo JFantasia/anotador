@@ -1,10 +1,11 @@
 from django.contrib import admin
+from censo.forms import TrabajoForm
 
 from censo.models import EspaciosPoderosa, InfraSocial, IngresosEspeciales, MaterialesPared, MaterialesPiso, MaterialesTecho, OpcionesAgua, OpcionesCloacas, OpcionesGas, OpcionesLuz, Parentezco, Encuesta, Familia, TipoBanio, TipoInodoro, TipoTrabajo, TipoVivienda, Trabajo, UsoVivienda, Vivienda, Servicios
 
 admin.site.register(Parentezco)
 admin.site.register(Familia)
-admin.site.register(Trabajo)
+
 admin.site.register(Vivienda)
 admin.site.register(Servicios)
 admin.site.register(InfraSocial)
@@ -88,7 +89,16 @@ class InfraSocialInline(admin.TabularInline):
 class EncuestaAdmin(admin.ModelAdmin):
     list_display = ['fecha', 'direccion', 'encuestadore']
     list_filter = ['encuestadore', 'fecha']
-    inlines = [FamiliaInline, TrabajoInline, ViviendaInline, ServiciosInline, InfraSocialInline]
+    # inlines = [FamiliaInline, TrabajoInline, ViviendaInline, ServiciosInline, InfraSocialInline]
+    readonly_fields = ['encuestadore']
 
+    def save_model(self, request, obj, form, change):
+        obj.encuestadore = request.user
+        super().save_model(request, obj, form, change)
 
 admin.site.register(Encuesta, EncuestaAdmin)
+
+class TrabajoAdmin(admin.ModelAdmin):
+    """ form = TrabajoForm """
+
+admin.site.register(Trabajo, TrabajoAdmin)
