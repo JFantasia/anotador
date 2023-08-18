@@ -1,9 +1,10 @@
 from django.contrib import admin
 
 # Register your models here.
+
 from import_export.admin import ExportActionMixin
 
-from .models import Organizacion, Reserva, Tarea, TipoEspacio, Espacio, Recurso, TipoTarea
+from .models import NotaReunion, Organizacion, Reserva, Tarea, TipoEspacio, Espacio, Recurso, TipoTarea
 
 class EspacioTabularInline(admin.TabularInline):
     model = Espacio
@@ -66,3 +67,11 @@ class TareaAdmin(ExportActionMixin, admin.ModelAdmin):
     list_filter = ['estado', 'limite']
 
 admin.site.register(Tarea, TareaAdmin)
+
+class NotaReunionAdmin(ExportActionMixin, admin.ModelAdmin):
+    list_display = ['fecha', 'grupo', 'resumen']
+    list_filter = ['esAsamblea', 'grupo']
+
+admin.site.register(NotaReunion, NotaReunionAdmin)
+
+

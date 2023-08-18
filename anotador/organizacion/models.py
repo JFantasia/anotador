@@ -107,3 +107,18 @@ class Tarea(models.Model):
 
     class Meta:
         verbose_name_plural = "Tareas"
+
+class NotaReunion(models.Model):
+    ''' Modelo para representar las notas de reuniones '''
+    fecha = models.DateField()
+    grupo = models.ForeignKey(Grupo, models.CASCADE, blank=True, null=True)
+    resumen = models.CharField(max_length=100)
+    detalle = models.TextField()
+    esAsamblea = models.BooleanField(default=True, verbose_name="Nota de Asamblea")
+    tarea = models.ForeignKey(Tarea, models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.fecha} - {self.esAsamblea} - {self.resumen}"
+
+    class Meta:
+        verbose_name_plural = "Notas de Reuniones"

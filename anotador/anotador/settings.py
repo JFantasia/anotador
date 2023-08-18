@@ -62,7 +62,8 @@ INSTALLED_APPS = [
     'generos',
     'censo',
     'smart_selects',
-    'organizacion'
+    'organizacion',
+    'almacen'
     # 'rest_framework'
 ]
 
