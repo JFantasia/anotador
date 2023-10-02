@@ -29,7 +29,7 @@ class Ficha(models.Model):
     notas = models.TextField(blank=True)
 
     def __str__(self):
-        return f"{self.nombre}"
+        return f"{self.persona}"
 
     class Meta:
         verbose_name_plural = "Fichas"
