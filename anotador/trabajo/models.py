@@ -27,6 +27,7 @@ class Ficha(models.Model):
     estado_persona = models.CharField(max_length=10, choices=estado_persona)
     ingreso = models.DateField(default=datetime.now)
     notas = models.TextField(blank=True)
+    nexo = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.persona}"
