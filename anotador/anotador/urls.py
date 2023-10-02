@@ -25,6 +25,7 @@ urlpatterns = [
     path('chaining/', include('smart_selects.urls')),
     path('', views.home, name="home"),
     path('buscar/', views.buscar, name="buscar"),
+    path("i18n/", include("django.conf.urls.i18n")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

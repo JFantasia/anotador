@@ -1,0 +1,18 @@
+body {
+    font-size: 18px;
+}
+
+.breadcrumb,
+.btn,
+.dropdown-menu .dropdown-item,
+.nav-pills .nav-link,
+.nav-tabs .nav-link,
+.navbar .nav-link,
+.pagination,
+.sandstone,
+.tooltip {
+  font-size:18px;
+  line-height:22px;
+  font-weight:500;
+  text-transform:uppercase
+}

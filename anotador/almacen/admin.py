@@ -64,4 +64,14 @@ class RecepcionAdmin(ExportActionMixin, admin.ModelAdmin):
     inlines = [DetalleRecepcionInline]
     readonly_fields = ['estado']
 
+    def has_change_permission(self, request, obj=None):
+        print(self)
+        print(obj)
+        print(request)
+        if obj:
+            if obj.estado == 'P':
+                return True
+            else:
+                return False
+
 admin.site.register(Recepcion, RecepcionAdmin)

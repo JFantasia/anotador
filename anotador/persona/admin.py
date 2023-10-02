@@ -13,23 +13,6 @@ admin.site.register(Grupo)
 class PersonaAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ['documento', 'nombre', 'apellido', 'telefono']
     list_filter = ['calle', 'grupo']
-    '''
-    Código para prueba de gráficos
-    def changelist_view(self, request, extra_context=None):
-        # Aggregate new subscribers per day
-        chart_data = (
-            Persona.objects.all()
-        )
-        chart_data_all = Persona.objects.all()
-        
-        # Serialize and attach the chart data to the template context
-        # as_json = json.dumps(list(chart_data), cls=DjangoJSONEncoder)
-        as_json = serializers.serialize("json",chart_data_all)
-        print(as_json)
-        extra_context = extra_context or {"chart_data": as_json}
-
-        # Call the superclass changelist_view to render the page
-        return super().changelist_view(request, extra_context=extra_context)
-    '''
+    search_fields = ['nombre', 'apellido']
 
 admin.site.register(Persona, PersonaAdmin)
