@@ -332,7 +332,7 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_nav_compact_style": False,
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": True,
-    "theme": "sandstone",
+    "theme": "materia",
     "dark_mode_theme": "darkly",
     "button_classes": {
         "primary": "btn-outline-primary",
